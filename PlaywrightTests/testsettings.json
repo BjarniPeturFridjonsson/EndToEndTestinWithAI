@@ -1,0 +1,38 @@
+{
+  "CmsWebUrl": "http://localhost:0002",
+  "AmplusApiUrl": "http://localhost:0001",
+  "CmsWebProject": "CmsWeb/CmsWeb.csproj",
+  "ApiKey": "YourKey",
+  "AmplusApiProject": "",
+  "StartApps": false,
+  "Users": {
+    "Super": {
+      "Username": "TestUserSuperMember@localtest.com",
+      "Password": "!123456",
+      "Role": "SuperRole",
+      "Name": "Chat TestMember SuperAdmin",
+      "IdNumber": "6806052030"
+    },
+    "Admin": {
+      "Username": "TestUserAdminMember@localtest.com",
+      "Password": "!123456",
+      "Role": "AdminRole",
+      "Name": "Gwen TestMember Admin",
+      "IdNumber": "6910962899"
+    },
+    "Training": {
+      "Username": "TestUserTrainingMember@localtest.com",
+      "Password": "!123456",
+      "Role": "TrainingRole",
+      "Name": "Ronan TestMember Training",
+      "IdNumber": "6106962529"
+    },
+    "Member": {
+      "Username": "TestUserRegularMember@localtest.com",
+      "Password": "!123456",
+      "Role": "Member",
+      "Name": "Harry TestMember Member",
+      "IdNumber": "6401942439"
+    }
+  }
+}

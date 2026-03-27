@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Test Builder — SvifflugPiranha</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #2f81f7;
+    --green: #3fb950; --orange: #d29922; --red: #f85149;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; overflow: hidden; font-size: 14px; }
+
+  /* Sidebar */
+  #sidebar { width: 280px; min-width: 280px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  #sidebar-header { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  #sidebar-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  #progress-bar-wrap { background: var(--border); border-radius: 4px; height: 6px; }
+  #progress-bar { background: var(--green); height: 6px; border-radius: 4px; transition: width 0.3s; width: 0%; }
+  #progress-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  #page-list { overflow-y: auto; flex: 1; padding-bottom: 8px; }
+  .section-header { padding: 10px 16px 3px; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; border-top: 1px solid var(--border); margin-top: 6px; }
+  .section-header:first-child { border-top: none; margin-top: 0; }
+  .page-item { display: flex; align-items: center; gap: 8px; padding: 5px 16px; cursor: pointer; }
+  .page-item:hover { background: rgba(255,255,255,0.05); }
+  .page-item.active { background: rgba(47,129,247,0.12); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--border); }
+  .dot.covered { background: var(--green); }
+  .dot.key { background: var(--orange); }
+  .page-name { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+  .page-item.active .page-name { color: var(--accent); }
+  .warn-icon { font-size: 10px; margin-left: auto; flex-shrink: 0; }
+
+  /* Main */
+  #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Top bar */
+  #topbar { padding: 10px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--surface); flex-shrink: 0; min-height: 48px; }
+  #topbar-url { font-family: monospace; font-size: 13px; color: var(--accent); }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; background: rgba(47,129,247,0.12); color: var(--accent); border: 1px solid rgba(47,129,247,0.25); }
+  .badge.green { background: rgba(63,185,80,0.12); color: var(--green); border-color: rgba(63,185,80,0.25); }
+  .badge.orange { background: rgba(210,153,34,0.12); color: var(--orange); border-color: rgba(210,153,34,0.25); }
+  #topbar-empty { color: var(--muted); font-size: 13px; }
+  #btn-navigate { margin-left: auto; padding: 6px 16px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  #btn-navigate:hover { background: #388bfd; }
+  #btn-navigate:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Content area */
+  #content { flex: 1; display: flex; overflow: hidden; }
+  #empty-state { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--muted); flex-direction: column; gap: 8px; }
+  #empty-state h2 { color: var(--text); font-size: 16px; }
+
+  /* Left panel: screenshot + elements */
+  #panel-left { width: 350px; min-width: 350px; border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  #screenshot-section { padding: 12px; border-bottom: 1px solid var(--border); }
+  #screenshot { width: 100%; border-radius: 6px; border: 1px solid var(--border); display: none; }
+  #screenshot-placeholder { color: var(--muted); font-size: 12px; text-align: center; padding: 32px 0; }
+  .panel-label { padding: 8px 14px; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  #elements-list { overflow-y: auto; flex: 1; }
+  .el-row { padding: 4px 14px; font-size: 11px; font-family: monospace; display: flex; gap: 6px; align-items: baseline; }
+  .el-kind { font-size: 9px; text-transform: uppercase; font-weight: 700; flex-shrink: 0; width: 46px; }
+  .el-kind.heading { color: #bc8cff; }
+  .el-kind.button  { color: var(--green); }
+  .el-kind.input   { color: var(--accent); }
+  .el-kind.table   { color: var(--orange); }
+  .el-detail { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Right panel: test code */
+  #panel-right { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  #code-header { padding: 10px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--surface); flex-shrink: 0; }
+  #code-filename { font-family: monospace; font-size: 12px; color: var(--muted); }
+  #btn-copy { padding: 5px 12px; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 5px; cursor: pointer; font-size: 12px; }
+  #btn-copy:hover { border-color: var(--accent); }
+  #btn-save { margin-left: auto; padding: 6px 18px; background: var(--green); color: #000; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 700; }
+  #btn-save:hover { background: #4ac261; }
+  #btn-save:disabled { opacity: 0.35; cursor: not-allowed; }
+  #save-msg { font-size: 12px; }
+  #save-msg.ok  { color: var(--green); }
+  #save-msg.err { color: var(--red); }
+
+  /* Code view / edit toggle */
+  #code-toolbar { padding: 6px 16px; display: flex; gap: 6px; border-bottom: 1px solid var(--border); background: var(--bg); flex-shrink: 0; }
+  .toggle-btn { padding: 3px 12px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); }
+  .toggle-btn.active { background: var(--surface); color: var(--text); border-color: var(--accent); }
+
+  #code-display { flex: 1; overflow-y: auto; }
+  #code-display pre { margin: 0; border-radius: 0; font-size: 12px; min-height: 100%; }
+
+  #code-editor { flex: 1; display: none; }
+  #code-textarea { width: 100%; height: 100%; background: var(--bg); color: var(--text); border: none; padding: 16px; font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; line-height: 1.5; resize: none; outline: none; }
+
+  #code-placeholder { padding: 48px 24px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+  #code-placeholder strong { color: var(--text); }
+  #code-placeholder code { background: var(--surface); padding: 1px 6px; border-radius: 4px; font-size: 12px; color: var(--accent); }
+
+  .spinner { display: inline-block; width: 13px; height: 13px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <div id="sidebar-title">🛫 Test Coverage</div>
+    <div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+    <div id="progress-label">Loading...</div>
+  </div>
+  <div id="page-list"></div>
+</div>
+
+<div id="main">
+  <div id="topbar">
+    <span id="topbar-empty">← Select a page</span>
+    <span id="topbar-url" style="display:none"></span>
+    <span id="badge-auth" class="badge" style="display:none"></span>
+    <span id="badge-key" class="badge orange" style="display:none">⭐ Key page</span>
+    <span id="badge-covered" class="badge green" style="display:none">✓ Has test</span>
+    <button id="btn-navigate" disabled>
+      <span id="nav-spinner" class="spinner" style="display:none"></span>
+      Navigate
+    </button>
+  </div>
+
+  <div id="content">
+    <div id="empty-state">
+      <h2>Playwright Test Builder</h2>
+      <span>Select a page from the sidebar, then click Navigate to inspect it.</span>
+      <span>Write the test here in Claude Code, then paste it into the editor and save.</span>
+    </div>
+
+    <div id="panel-left" style="display:none">
+      <div id="screenshot-section">
+        <img id="screenshot" alt="Page screenshot" />
+        <div id="screenshot-placeholder">Click Navigate to load</div>
+      </div>
+      <div class="panel-label">Page Elements</div>
+      <div id="elements-list"></div>
+    </div>
+
+    <div id="panel-right" style="display:none">
+      <div id="code-header">
+        <span id="code-filename">—</span>
+        <button id="btn-copy">Copy</button>
+        <span id="save-msg"></span>
+        <button id="btn-save" disabled>Save Test</button>
+      </div>
+      <div id="code-toolbar">
+        <button class="toggle-btn active" data-view="preview">Preview</button>
+        <button class="toggle-btn" data-view="edit">Edit</button>
+      </div>
+      <div id="code-display">
+        <div id="code-placeholder">
+          <strong>How to use:</strong><br><br>
+          1. Click <strong>Navigate</strong> — the page loads in the background and its structure appears on the left.<br>
+          2. Switch to <strong>this Claude Code session</strong> and say: <code>"write the test for [page]"</code><br>
+          3. Claude writes the test using the real selectors from the snapshot.<br>
+          4. Switch to the <strong>Edit tab</strong>, paste the generated code, then click <strong>Save Test</strong>.
+        </div>
+        <pre style="display:none"><code class="language-csharp" id="code-content"></code></pre>
+      </div>
+      <div id="code-editor">
+        <textarea id="code-textarea" placeholder="Paste generated test code here..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let selectedPage = null;
+
+// --- Load pages ---
+async function loadPages() {
+  const { sections, total, covered } = await fetch('/api/pages').then(r => r.json());
+  const pct = total ? Math.round(covered / total * 100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${covered} / ${total} pages covered (${pct}%)`;
+  renderSidebar(sections);
+}
+
+function renderSidebar(sections) {
+  const list = document.getElementById('page-list');
+  list.innerHTML = '';
+  for (const section of sections) {
+    const hdr = document.createElement('div');
+    hdr.className = 'section-header';
+    hdr.textContent = section.title;
+    list.appendChild(hdr);
+    for (const page of section.pages) {
+      const item = document.createElement('div');
+      item.className = 'page-item';
+      item.dataset.path = page.path;
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (page.covered ? ' covered' : page.key ? ' key' : '');
+      dot.id = 'dot-' + page.path.replace(/\//g, '-');
+      const name = document.createElement('div');
+      name.className = 'page-name';
+      const parts = page.path.split('/');
+      name.textContent = parts.length > 2 ? parts.slice(-2).join('/') : parts.pop();
+      name.title = page.path;
+      item.append(dot, name);
+      if (page.warning) {
+        const w = document.createElement('div');
+        w.className = 'warn-icon';
+        w.textContent = '⚠️';
+        item.appendChild(w);
+      }
+      item.addEventListener('click', () => selectPage(item, page, section));
+      list.appendChild(item);
+    }
+  }
+}
+
+// --- Select page ---
+function selectPage(item, page, section) {
+  document.querySelectorAll('.page-item').forEach(i => i.classList.remove('active'));
+  item.classList.add('active');
+  selectedPage = { ...page, authState: section.authState, baseClass: section.baseClass };
+
+  document.getElementById('topbar-empty').style.display = 'none';
+  document.getElementById('topbar-url').style.display = '';
+  document.getElementById('topbar-url').textContent = '/' + page.path;
+  document.getElementById('badge-auth').style.display = section.authState !== 'none' ? '' : 'none';
+  document.getElementById('badge-auth').textContent = section.authState;
+  document.getElementById('badge-key').style.display = page.key ? '' : 'none';
+  document.getElementById('badge-covered').style.display = page.covered ? '' : 'none';
+  document.getElementById('btn-navigate').disabled = false;
+
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('panel-left').style.display = 'flex';
+  document.getElementById('panel-right').style.display = 'flex';
+
+  document.getElementById('screenshot').style.display = 'none';
+  document.getElementById('screenshot-placeholder').style.display = 'block';
+  document.getElementById('screenshot-placeholder').textContent = 'Click Navigate to load';
+  document.getElementById('elements-list').innerHTML = '';
+
+  const [area, ...rest] = page.path.split('/');
+  document.getElementById('code-filename').textContent = rest.join('') + 'Tests.cs';
+  document.getElementById('save-msg').textContent = '';
+  document.getElementById('btn-save').disabled = true;
+  clearCode();
+}
+
+// --- Navigate ---
+document.getElementById('btn-navigate').addEventListener('click', async () => {
+  if (!selectedPage) return;
+  const btn = document.getElementById('btn-navigate');
+  const spinner = document.getElementById('nav-spinner');
+  btn.disabled = true;
+  spinner.style.display = 'inline-block';
+  document.getElementById('screenshot-placeholder').textContent = 'Navigating…';
+
+  try {
+    const res = await fetch('/api/navigate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: selectedPage.path, authState: selectedPage.authState })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    const img = document.getElementById('screenshot');
+    img.src = data.screenshot;
+    img.style.display = 'block';
+    document.getElementById('screenshot-placeholder').style.display = 'none';
+    renderElements(data.elements);
+  } catch (err) {
+    document.getElementById('screenshot-placeholder').textContent = 'Error: ' + err.message;
+  } finally {
+    btn.disabled = false;
+    spinner.style.display = 'none';
+  }
+});
+
+function renderElements(elements) {
+  const list = document.getElementById('elements-list');
+  list.innerHTML = '';
+  for (const el of elements) {
+    const row = document.createElement('div');
+    row.className = 'el-row';
+    const kind = document.createElement('span');
+    kind.className = 'el-kind ' + el.kind;
+    kind.textContent = el.kind;
+    const detail = document.createElement('span');
+    detail.className = 'el-detail';
+    if (el.kind === 'heading') detail.textContent = `${el.tag}: "${el.text}"`;
+    else if (el.kind === 'button') detail.textContent = `"${el.text}"${el.id ? ` #${el.id}` : ''}`;
+    else if (el.kind === 'input') detail.textContent = `${el.inputType}${el.id ? ` #${el.id}` : ''}${el.label ? ` "${el.label}"` : ''}`;
+    else if (el.kind === 'table') detail.textContent = el.headers.join(' | ');
+    row.append(kind, detail);
+    list.appendChild(row);
+  }
+}
+
+// --- Code view / edit toggle ---
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.getElementById('code-display').style.display = view === 'preview' ? 'block' : 'none';
+    document.getElementById('code-editor').style.display = view === 'edit' ? 'flex' : 'none';
+
+    if (view === 'preview') {
+      // Sync from textarea to highlighted view
+      const code = document.getElementById('code-textarea').value.trim();
+      if (code) setCodePreview(code);
+    }
+    if (view === 'edit') {
+      document.getElementById('btn-save').disabled = !document.getElementById('code-textarea').value.trim();
+    }
+  });
+});
+
+document.getElementById('code-textarea').addEventListener('input', () => {
+  const hasCode = !!document.getElementById('code-textarea').value.trim();
+  document.getElementById('btn-save').disabled = !hasCode;
+});
+
+function setCodePreview(code) {
+  document.getElementById('code-placeholder').style.display = 'none';
+  const pre = document.querySelector('#code-display pre');
+  const content = document.getElementById('code-content');
+  content.textContent = code;
+  pre.style.display = 'block';
+  hljs.highlightElement(content);
+}
+
+function clearCode() {
+  document.getElementById('code-textarea').value = '';
+  document.getElementById('code-content').textContent = '';
+  document.querySelector('#code-display pre').style.display = 'none';
+  document.getElementById('code-placeholder').style.display = 'block';
+}
+
+// --- Copy ---
+document.getElementById('btn-copy').addEventListener('click', () => {
+  const code = document.getElementById('code-textarea').value || document.getElementById('code-content').textContent;
+  if (code) navigator.clipboard.writeText(code);
+});
+
+// --- Save ---
+document.getElementById('btn-save').addEventListener('click', async () => {
+  if (!selectedPage) return;
+  const code = document.getElementById('code-textarea').value.trim();
+  if (!code) return;
+
+  const btn = document.getElementById('btn-save');
+  const msg = document.getElementById('save-msg');
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/save-test', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: code, pagePath: selectedPage.path })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    msg.className = 'ok';
+    msg.textContent = `✓ Saved ${data.filename}`;
+    setCodePreview(code);
+
+    // Mark green in sidebar
+    const dot = document.getElementById('dot-' + selectedPage.path.replace(/\//g, '-'));
+    if (dot) { dot.className = 'dot covered'; }
+    document.getElementById('badge-covered').style.display = '';
+    await loadPages(); // refresh progress bar
+  } catch (err) {
+    msg.className = 'err';
+    msg.textContent = `✗ ${err.message}`;
+    btn.disabled = false;
+  }
+});
+
+loadPages();
+</script>
+</body>
+</html>

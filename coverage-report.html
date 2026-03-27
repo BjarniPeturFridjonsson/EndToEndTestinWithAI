@@ -1,0 +1,1242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Playwright Test Coverage</title>
+  <style>
+    body  { font-family: sans-serif; margin: 2rem; background: #f9f9f9; color: #222; }
+    h1    { margin-bottom: 0.25rem; }
+    h2    { margin: 2rem 0 0.75rem; font-size: 1.1rem; color: #444; }
+    .ts   { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .summary { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .stat    { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.5rem; min-width: 120px; text-align: center; }
+    .stat .n { font-size: 2rem; font-weight: bold; }
+    .stat .l { font-size: 0.85rem; color: #666; }
+    .green  { color: #2a9d2a; }
+    .red    { color: #c0392b; }
+    .orange { color: #e67e22; }
+    .filters { margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .filters button { padding: 0.4rem 1rem; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; background: #fff; font-size: 0.9rem; }
+    .filters button.active { background: #333; color: #fff; border-color: #333; }
+    .area-stats { display: flex; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .area-stats .stat { padding: 0.5rem 1rem; min-width: 80px; }
+    .area-stats .stat .n { font-size: 1.4rem; }
+    table  { width: 100%; border-collapse: collapse; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 2rem; }
+    th     { background: #333; color: #fff; text-align: left; padding: 0.6rem 1rem; font-size: 0.85rem; }
+    td     { padding: 0.55rem 1rem; border-bottom: 1px solid #eee; font-size: 0.9rem; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr.covered-pass  { background: #f0fff0; }
+    tr.covered-fail  { background: #fff5f5; }
+    tr.not-covered   { background: #fffbf0; }
+    tr.a11y-fail     { background: #fff0f8; }
+    .badge           { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 3px; font-size: 0.78rem; font-weight: bold; }
+    .badge-pass      { background: #d4edda; color: #155724; }
+    .badge-fail      { background: #f8d7da; color: #721c24; }
+    .badge-norun     { background: #e2e3e5; color: #383d41; }
+    .badge-none      { background: #fff3cd; color: #856404; }
+    .badge-a11y-ok   { background: #d4edda; color: #155724; }
+    .badge-a11y-fail { background: #f8d7da; color: #721c24; }
+    .badge-a11y-skip { background: #e2e3e5; color: #555; }
+    .test-list  { margin: 0.25rem 0 0 0; padding: 0; list-style: none; }
+    .test-list li { font-size: 0.82rem; color: #555; margin-bottom: 0.25rem; }
+    .a11y-list  { margin: 0.25rem 0 0 0; padding: 0 0 0 1rem; font-size: 0.8rem; color: #900; }
+    .artifacts  { margin-top: 0.3rem; }
+    .artifacts a { font-size: 0.78rem; color: #0066cc; margin-right: 0.75rem; }
+    .url        { font-family: monospace; font-size: 0.88rem; }
+    .area-tag   { font-size: 0.75rem; color: #888; }
+  </style>
+</head>
+<body>
+<h1>Playwright Test Coverage</h1>
+<div class='ts'>Generated 2026-03-26 22:16:44</div>
+<h2>Coverage</h2><div class='summary'>
+<div class='stat'><div class='n '>120</div><div class='l'>Total Pages</div></div>
+<div class='stat'><div class='n green'>4</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n orange'>116</div><div class='l'>Not Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Test Failures</div></div>
+<div class='stat'><div class='n red'>3%</div><div class='l'>Coverage</div></div>
+</div>
+<h2>Accessibility (axe-core)</h2><div class='summary'>
+<div class='stat'><div class='n '>1</div><div class='l'>Pages Audited</div></div>
+<div class='stat'><div class='n green'>1</div><div class='l'>Clean</div></div>
+<div class='stat'><div class='n green'>0</div><div class='l'>Violations</div></div>
+</div>
+<div class='filters'>
+  <button class='active' onclick="filter('all', this)">All</button>
+  <button onclick="filter('covered', this)">Covered</button>
+  <button onclick="filter('not-covered', this)">Not Covered</button>
+  <button onclick="filter('failing', this)">Failing</button>
+  <button onclick="filter('a11y-fail', this)">A11y Issues</button>
+</div>
+<h2 id='area-Admin'>Admin <span style='font-size:0.8rem;color:#888;font-weight:normal'>(TestCategory=Admin)</span></h2>
+<div class='area-stats'>
+<div class='stat'><div class='n '>29</div><div class='l'>Pages</div></div>
+<div class='stat'><div class='n orange'>1</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Failing</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>A11y</div></div>
+<div class='stat'><div class='n red'>3%</div><div class='l'>Coverage</div></div>
+</div>
+<table class='area-table' data-area='Admin'>
+<thead><tr><th>Page</th><th>Tests</th><th>Accessibility</th></tr></thead><tbody>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/FlightsList</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Contracts/Summaries</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Charges</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights20/Payments</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Charges</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Flights25/Payments</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/FlightsOps/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/FlightsOps/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/FlightsOps/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/FlightsOps/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/FlightsOps/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Members/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Members/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Members/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='covered-pass' data-state='covered' data-area='Admin'>
+  <td><span class='url'>/Admin/Members/Index</span></td>
+  <td>
+    <ul class='test-list'>
+      <li><span class='badge badge-norun'>not run</span> Index_Loads — Smoke test - page loads
+      </li>
+      <li><span class='badge badge-norun'>not run</span> Index_SearchAndNavigate — Search finds member using exact name, accent-folded, and lowercase — row click and Nánar button both navigate to correct details page
+      </li>
+      <li><span class='badge badge-norun'>not run</span> Index_HistoryToggle_ShowsInactiveMember — Sögufærslur toggle — inactive member hidden without it, visible with it, navigation to details correct
+      </li>
+    </ul>
+  </td>
+  <td>
+    <span class='badge badge-a11y-ok'>✓ clean</span>
+  </td>
+</tr>
+</tbody></table>
+<h2 id='area-Training'>Training <span style='font-size:0.8rem;color:#888;font-weight:normal'>(TestCategory=Training)</span></h2>
+<div class='area-stats'>
+<div class='stat'><div class='n '>16</div><div class='l'>Pages</div></div>
+<div class='stat'><div class='n orange'>0</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Failing</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>A11y</div></div>
+<div class='stat'><div class='n red'>0%</div><div class='l'>Coverage</div></div>
+</div>
+<table class='area-table' data-area='Training'>
+<thead><tr><th>Page</th><th>Tests</th><th>Accessibility</th></tr></thead><tbody>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/CategoryEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/QuizCategories</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/QuizQuestionEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/QuizQuestions</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/StudentProgress</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/WrittenExamDetails</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/WrittenExamEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/ExamAdmin/WrittenExams</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/Medicals/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/StudentTasks/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/StudentTasks/DetailEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/StudentTasks/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/StudentTasks/StudentsIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Training'>
+  <td><span class='url'>/Training/StudentTasks/TaskEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+</tbody></table>
+<h2 id='area-Super'>Super <span style='font-size:0.8rem;color:#888;font-weight:normal'>(TestCategory=Super)</span></h2>
+<div class='area-stats'>
+<div class='stat'><div class='n '>48</div><div class='l'>Pages</div></div>
+<div class='stat'><div class='n orange'>2</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Failing</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>A11y</div></div>
+<div class='stat'><div class='n red'>4%</div><div class='l'>Coverage</div></div>
+</div>
+<table class='area-table' data-area='Super'>
+<thead><tr><th>Page</th><th>Tests</th><th>Accessibility</th></tr></thead><tbody>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/CapabilityRows</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='covered-pass' data-state='covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/Create</span></td>
+  <td>
+    <ul class='test-list'>
+      <li><span class='badge badge-pass'>✓</span> Capabilities_FullLifecycle — Full lifecycle - create, add 3 members, verify delete is blocked, remove members, delete
+      </li>
+    </ul>
+  </td>
+  <td>
+    <span class='badge badge-a11y-ok'>✓ clean</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/EditRow</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='covered-pass' data-state='covered' data-area='Super'>
+  <td><span class='url'>/Super/Capabilities/Index</span></td>
+  <td>
+    <ul class='test-list'>
+      <li><span class='badge badge-norun'>not run</span> Index_Loads — Smoke test - page loads
+      </li>
+    </ul>
+  </td>
+  <td>
+    <span class='badge badge-a11y-ok'>✓ clean</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Enquiries/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/FlightTypes/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/FlightTypes/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/FlightTypes/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/FlightTypes/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/FlightTypes/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/EditRow</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/InfoTypes/InfoRows</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Items/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Items/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Items/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Items/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Items/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/MasterFiles/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Sites/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Sites/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Sites/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Sites/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Sites/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Tariffs/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Tariffs/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Tariffs/Details</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Tariffs/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/Tariffs/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/DetailsCreate</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/DetailsDelete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/DetailsEdit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/DetailsIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/TrainingTasks/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/WebCare/CurrentUsers</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/WebCare/Dashboard</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/WebCare/DayDetail</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/WebCare/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Super'>
+  <td><span class='url'>/Super/WebCare/Logs</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+</tbody></table>
+<h2 id='area-UserPages'>UserPages <span style='font-size:0.8rem;color:#888;font-weight:normal'>(TestCategory=Member)</span></h2>
+<div class='area-stats'>
+<div class='stat'><div class='n '>22</div><div class='l'>Pages</div></div>
+<div class='stat'><div class='n orange'>1</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Failing</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>A11y</div></div>
+<div class='stat'><div class='n red'>4%</div><div class='l'>Coverage</div></div>
+</div>
+<table class='area-table' data-area='UserPages'>
+<thead><tr><th>Page</th><th>Tests</th><th>Accessibility</th></tr></thead><tbody>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/BookingIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Create</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/CreateOld</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Delete</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Edit</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Listing</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Bookings/Overview</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/EditFlightInfo</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Exam/History</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Exam/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Exam/Quiz</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Exam/Results</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Exam/Test</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/FlightsDetails</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/FlightsIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Index</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/Index2</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='covered-pass' data-state='covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/MemberEdit</span></td>
+  <td>
+    <ul class='test-list'>
+      <li><span class='badge badge-norun'>not run</span> MemberEdit_Loads — Smoke test - page loads and is accessible
+      </li>
+      <li><span class='badge badge-norun'>not run</span> MemberEdit_SavesChanges_VerifiedOnDetailsPage — Edit member details - changes persist and display on MembersDetails
+      </li>
+    </ul>
+  </td>
+  <td>
+    <span class='badge badge-a11y-ok'>✓ clean</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/MembersDetails</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/PilotCareer/PilotInfoIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='UserPages'>
+  <td><span class='url'>/UserPages/TransIndex</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+</tbody></table>
+<h2 id='area-Other'>Other <span style='font-size:0.8rem;color:#888;font-weight:normal'>(no auth required)</span></h2>
+<div class='area-stats'>
+<div class='stat'><div class='n '>5</div><div class='l'>Pages</div></div>
+<div class='stat'><div class='n orange'>0</div><div class='l'>Covered</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>Failing</div></div>
+<div class='stat'><div class='n '>0</div><div class='l'>A11y</div></div>
+<div class='stat'><div class='n red'>0%</div><div class='l'>Coverage</div></div>
+</div>
+<table class='area-table' data-area='Other'>
+<thead><tr><th>Page</th><th>Tests</th><th>Accessibility</th></tr></thead><tbody>
+<tr class='not-covered' data-state='not-covered' data-area='Other'>
+  <td><span class='url'>/Archive</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Other'>
+  <td><span class='url'>/Page</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Other'>
+  <td><span class='url'>/Post</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Other'>
+  <td><span class='url'>/Profile</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+<tr class='not-covered' data-state='not-covered' data-area='Other'>
+  <td><span class='url'>/Login</span></td>
+  <td>
+    <span class='badge badge-none'>No tests</span>
+  </td>
+  <td>
+    <span class='badge badge-a11y-skip'>not audited</span>
+  </td>
+</tr>
+</tbody></table>
+<script>
+  function filter(state, btn) {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.area-table tbody tr').forEach(row => {
+      const states = row.dataset.state || '';
+      row.style.display = (state === 'all' || states.includes(state)) ? '' : 'none';
+    });
+    // Hide area sections that have no visible rows
+    document.querySelectorAll('.area-table').forEach(table => {
+      const visible = table.querySelectorAll('tbody tr:not([style*="none"])').length;
+      const section = table.previousElementSibling?.previousElementSibling;
+      if (section && section.tagName === 'H2') section.style.display = visible ? '' : 'none';
+      table.previousElementSibling.style.display = visible ? '' : 'none';
+      table.style.display = visible ? '' : 'none';
+    });
+  }
+</script>
+</body></html>
