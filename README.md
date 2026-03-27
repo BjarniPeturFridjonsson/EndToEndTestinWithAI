@@ -4,6 +4,10 @@ This repository shows how we built and maintain a practical end-to-end test suit
 
 The companion tool — `TestBuilderTool/` — is a local web UI that combines Playwright browser automation with the Claude AI API to help write tests through conversation. That is documented separately in `TestBuilderTool/DESIGN.md`.
 
+### You can watch a demo of this here:
+
+[![Watch the demo](WeekendwithAILogo.jpg)](https://youtu.be/_PFQgEdFgCw)
+
 ---
 
 ## Why E2E testing matters more now, not less
