@@ -57,6 +57,9 @@ We use a three-layer model that combines automatic discovery of all pages in the
 The deliberate decision here was to keep the developer as the judgment layer. AI handles the mechanical parts — selector discovery, boilerplate, convention compliance — and the developer handles what "correct" actually means.
 
 
+### Coverage report 
+ ![Coverage Report](CoverageReport.jpg)
+
 ---
 
 ## Infrastructure decisions
